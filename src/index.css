@@ -1,0 +1,760 @@
+
+@import "@fortawesome/fontawesome-free/css/all.min.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =========================================
+   COSMIC DEVELOPER PORTFOLIO
+   Design: Midnight Universe / Electric Violet
+========================================= */
+
+:root {
+  font-family: "Inter", sans-serif;
+  color: #f5f3ff;
+  background: #05030d;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+
+  --portfolio-bg: #05030d;
+  --portfolio-surface: #0c091a;
+  --portfolio-card: rgba(23, 17, 42, 0.72);
+
+  --portfolio-violet: #8b5cf6;
+  --portfolio-purple: #a855f7;
+  --portfolio-lavender: #c4b5fd;
+  --portfolio-pink: #e879f9;
+
+  --portfolio-text: #f8f7ff;
+  --portfolio-muted: #9993ad;
+
+  --portfolio-border: rgba(196, 181, 253, 0.13);
+
+  --cosmic-glow:
+    0 0 25px rgba(139, 92, 246, 0.2),
+    0 0 80px rgba(139, 92, 246, 0.09);
+}
+
+/* =========================================
+   RESET
+========================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  min-width: 320px;
+  background: var(--portfolio-bg);
+  scroll-behavior: auto;
+  scroll-padding-top: 100px;
+}
+
+body {
+  width: 100%;
+  min-width: 320px;
+  min-height: 100vh;
+  overflow-x: clip;
+
+  background-color: var(--portfolio-bg);
+  color: var(--portfolio-text);
+
+  position: relative;
+}
+
+#root {
+  min-height: 100vh;
+  position: relative;
+  isolation: isolate;
+}
+
+img,
+video,
+canvas {
+  max-width: 100%;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: rgba(139, 92, 246, 0.45);
+  color: #fff;
+}
+
+/* =========================================
+   COSMIC BACKGROUND
+========================================= */
+
+body {
+  background-image:
+    radial-gradient(
+      ellipse at 50% -15%,
+      rgba(124, 58, 237, 0.19),
+      transparent 38%
+    ),
+    radial-gradient(
+      ellipse at 85% 40%,
+      rgba(91, 33, 182, 0.08),
+      transparent 35%
+    ),
+    radial-gradient(
+      ellipse at 10% 75%,
+      rgba(76, 29, 149, 0.07),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.45) 0.7px,
+      transparent 1px
+    ),
+    radial-gradient(
+      circle,
+      rgba(196, 181, 253, 0.3) 0.7px,
+      transparent 1px
+    );
+
+  background-size:
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    83px 83px,
+    137px 137px;
+
+  background-position:
+    center top,
+    center,
+    center,
+    0 0,
+    40px 65px;
+
+  background-attachment: fixed;
+}
+
+/* Additional ambient cosmic glow */
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 0%,
+      rgba(139, 92, 246, 0.11),
+      transparent 45%
+    );
+
+  opacity: 0.9;
+}
+
+/* =========================================
+   TYPOGRAPHY
+========================================= */
+
+.font-display {
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.text-gradient {
+  background: linear-gradient(
+    110deg,
+    #ffffff 0%,
+    #c4b5fd 35%,
+    #a78bfa 65%,
+    #e879f9 100%
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-gradient-cosmic {
+  background: linear-gradient(
+    110deg,
+    #a78bfa,
+    #8b5cf6,
+    #38bdf8
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* =========================================
+   LAYOUT
+========================================= */
+
+.container-main {
+  width: 100%;
+  max-width: 1600px;
+  margin-inline: auto;
+}
+
+.section-padding {
+  padding: clamp(76px, 10vw, 130px) 7%;
+}
+
+section {
+  position: relative;
+  scroll-margin-top: 100px;
+}
+
+/* =========================================
+   GLASSMORPHISM
+========================================= */
+
+.glass {
+  background: rgba(18, 13, 35, 0.72);
+  border: 1px solid var(--portfolio-border);
+
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+}
+
+.glass-strong {
+  background: rgba(14, 9, 29, 0.88);
+  border: 1px solid rgba(196, 181, 253, 0.17);
+
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+}
+
+/* =========================================
+   COSMIC GLOW EFFECTS
+========================================= */
+
+.glow-orb {
+  position: absolute;
+  border-radius: 50%;
+
+  background: #8b5cf6;
+  filter: blur(110px);
+
+  opacity: 0.2;
+  pointer-events: none;
+
+  animation: orbFloat 9s ease-in-out infinite alternate;
+}
+
+.violet-glow {
+  box-shadow: var(--cosmic-glow);
+}
+
+.purple-glow {
+  box-shadow:
+    0 0 20px rgba(168, 85, 247, 0.22),
+    0 0 65px rgba(168, 85, 247, 0.1);
+}
+
+.cosmic-border {
+  border: 1px solid rgba(167, 139, 250, 0.3);
+  box-shadow:
+    inset 0 0 20px rgba(139, 92, 246, 0.04),
+    0 0 30px rgba(139, 92, 246, 0.06);
+}
+
+@keyframes orbFloat {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-25px, 30px, 0);
+  }
+}
+
+/* =========================================
+   COSMIC LIGHT / NEON LINE
+========================================= */
+
+.cosmic-line {
+  height: 1px;
+  width: 100%;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(139, 92, 246, 0.15),
+    rgba(196, 181, 253, 0.8),
+    rgba(139, 92, 246, 0.15),
+    transparent
+  );
+
+  box-shadow: 0 0 18px rgba(139, 92, 246, 0.6);
+}
+
+.neon-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(168, 85, 247, 0.7),
+    transparent
+  );
+}
+
+/* =========================================
+   NAVIGATION SUPPORT
+========================================= */
+
+.nav-glass {
+  background: rgba(7, 4, 18, 0.72);
+  border-bottom: 1px solid rgba(196, 181, 253, 0.12);
+
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+.nav-pill {
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(196, 181, 253, 0.13);
+  border-radius: 999px;
+
+  backdrop-filter: blur(20px);
+}
+
+.nav-link {
+  color: rgba(255, 255, 255, 0.7);
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #c4b5fd;
+}
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.btn-cosmic {
+  position: relative;
+  overflow: hidden;
+
+  background: linear-gradient(
+    110deg,
+    #6d28d9,
+    #8b5cf6,
+    #a855f7
+  );
+
+  color: #fff;
+
+  border: 1px solid rgba(196, 181, 253, 0.25);
+
+  box-shadow:
+    0 0 20px rgba(139, 92, 246, 0.2),
+    inset 0 1px rgba(255, 255, 255, 0.15);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.btn-cosmic:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 0 30px rgba(139, 92, 246, 0.35),
+    0 0 70px rgba(139, 92, 246, 0.12);
+}
+
+.btn-outline-cosmic {
+  background: rgba(139, 92, 246, 0.06);
+  color: #ddd6fe;
+
+  border: 1px solid rgba(167, 139, 250, 0.35);
+
+  transition: all 0.3s ease;
+}
+
+.btn-outline-cosmic:hover {
+  background: rgba(139, 92, 246, 0.16);
+  border-color: #a78bfa;
+
+  box-shadow: 0 0 25px rgba(139, 92, 246, 0.15);
+}
+
+/* =========================================
+   HERO
+========================================= */
+
+.hero-copy {
+  width: 100%;
+  min-width: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-copy h1 {
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+.hero-copy p {
+  max-width: 100%;
+  overflow-wrap: break-word;
+  color: var(--portfolio-muted);
+}
+
+.hero-scene {
+  width: 100%;
+  min-width: 0;
+  position: relative;
+}
+
+.hero-scene canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.hero-cosmic-glow {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+
+  width: min(500px, 75vw);
+  aspect-ratio: 1;
+
+  transform: translateX(-50%);
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle,
+    rgba(139, 92, 246, 0.3),
+    rgba(168, 85, 247, 0.1) 40%,
+    transparent 70%
+  );
+
+  filter: blur(45px);
+  pointer-events: none;
+}
+
+/* =========================================
+   PROJECT CARDS
+========================================= */
+
+.project-card {
+  position: relative;
+
+  transform-style: preserve-3d;
+  perspective: 1200px;
+
+  transition:
+    transform 0.55s cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.project-card:hover {
+  transform:
+    perspective(1200px)
+    rotateX(2deg)
+    rotateY(-2deg)
+    translateY(-8px);
+
+  border-color: rgba(167, 139, 250, 0.5);
+
+  box-shadow:
+    0 25px 80px rgba(109, 40, 217, 0.15),
+    0 0 25px rgba(139, 92, 246, 0.06);
+}
+
+.project-card img {
+  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.project-card:hover img {
+  transform: scale(1.07);
+}
+
+.tilt-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* =========================================
+   PROJECT IMAGE
+========================================= */
+
+.project-image {
+  overflow: hidden;
+  position: relative;
+}
+
+.project-image img {
+  display: block;
+  width: 100%;
+  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.project-image:hover img {
+  transform: scale(1.08);
+}
+
+/* =========================================
+   HORIZONTAL GALLERY
+========================================= */
+
+.horizontal-gallery-track {
+  display: flex;
+  gap: 28px;
+  width: max-content;
+}
+
+.horizontal-gallery-card {
+  width: min(560px, 85vw);
+}
+
+.project-gallery-track {
+  will-change: transform;
+}
+
+.project-gallery-track img {
+  display: block;
+}
+
+/* =========================================
+   3D EXPERIENCE
+========================================= */
+
+.hero-scene canvas,
+.skills-universe canvas {
+  display: block;
+  outline: none;
+}
+
+.skills-universe {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.portal-glow {
+  box-shadow:
+    0 0 30px rgba(139, 92, 246, 0.35),
+    0 0 90px rgba(139, 92, 246, 0.2);
+}
+
+/* =========================================
+   NOISE TEXTURE
+========================================= */
+
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+
+  pointer-events: none;
+  opacity: 0.035;
+
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+}
+
+/* =========================================
+   SCROLL PROGRESS
+========================================= */
+
+#scroll-progress {
+  transform-origin: left center;
+  will-change: transform;
+}
+
+/* =========================================
+   SCROLLBAR
+========================================= */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #05030d;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    #8b5cf6,
+    #4c1d95
+  );
+
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a78bfa;
+}
+
+/* =========================================
+   RESPONSIVE: TABLET
+========================================= */
+
+@media (max-width: 1024px) {
+  .section-padding {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  .glow-orb {
+    filter: blur(85px);
+  }
+}
+
+/* =========================================
+   RESPONSIVE: MOBILE
+========================================= */
+
+@media (max-width: 899px) {
+  html {
+    scroll-padding-top: 85px;
+  }
+
+  section {
+    scroll-margin-top: 85px;
+  }
+
+  .horizontal-gallery-track {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .horizontal-gallery-card {
+    width: 100%;
+  }
+
+  .project-gallery-track {
+    width: 100%;
+    transform: none !important;
+    will-change: auto;
+  }
+
+  .tilt-card,
+  .project-card {
+    transform: none !important;
+    will-change: auto;
+  }
+
+  .glow-orb {
+    filter: blur(65px);
+  }
+}
+
+@media (max-width: 640px) {
+  .section-padding {
+    padding: 76px 20px;
+  }
+
+  #home {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .hero-copy h1 {
+    letter-spacing: -0.065em;
+  }
+
+  .noise-overlay {
+    opacity: 0.02;
+  }
+
+  body {
+    background-attachment: scroll;
+  }
+}
+
+/* =========================================
+   TOUCH DEVICES
+========================================= */
+
+@media (pointer: coarse) {
+  .custom-cursor {
+    display: none !important;
+  }
+
+  .project-card:hover {
+    transform: none;
+  }
+}
+
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .project-gallery-track {
+    will-change: auto;
+  }
+}
+
+/* COSMIC NAVBAR */
+
+.nav-pill {
+  background: rgba(18, 12, 34, 0.62);
+  border: 1px solid rgba(196, 181, 253, 0.16);
+  box-shadow:
+    0 0 30px rgba(139, 92, 246, 0.08),
+    inset 0 1px rgba(255, 255, 255, 0.05);
+
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+@media (max-width: 1023px) {
+  .nav-glass {
+    max-height: calc(100svh - 100px);
+    overflow-y: auto;
+  }
+}
+
+/* ORBITAL TECHNOLOGY EXPERIENCE */
+
+.hero-scene {
+  isolation: isolate;
+}
+
+.hero-scene canvas {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-scene > div {
+  overflow: visible;
+}
+
+@media (max-width: 640px) {
+  .hero-scene {
+    max-height: 360px;
+  }
+}
